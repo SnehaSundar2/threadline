@@ -1,0 +1,167 @@
+[
+  {
+    "id": 1,
+    "name": "Essential Crew Tee",
+    "cat": "Crew Neck",
+    "price": 24,
+    "rating": 4.8,
+    "colors": [
+      "Black",
+      "White",
+      "Navy",
+      "Grey"
+    ],
+    "desc": "Our everyday classic in 180gsm organic cotton with a clean, regular fit.",
+    "tag": "Bestseller"
+  },
+  {
+    "id": 2,
+    "name": "Heavyweight Boxy Tee",
+    "cat": "Oversized",
+    "price": 34,
+    "rating": 4.7,
+    "colors": [
+      "Sand",
+      "Black",
+      "Olive"
+    ],
+    "desc": "240gsm heavyweight cotton with a dropped shoulder and boxy cut.",
+    "tag": "New"
+  },
+  {
+    "id": 3,
+    "name": "Deep V Tee",
+    "cat": "V-Neck",
+    "price": 22,
+    "rating": 4.4,
+    "colors": [
+      "White",
+      "Grey",
+      "Navy"
+    ],
+    "desc": "Lightweight and breathable, perfect for layering or warm days."
+  },
+  {
+    "id": 4,
+    "name": "Classic Pique Polo",
+    "cat": "Polo",
+    "price": 44,
+    "rating": 4.9,
+    "colors": [
+      "Navy",
+      "White",
+      "Red",
+      "Olive"
+    ],
+    "desc": "Textured pique knit polo with a soft collar that holds its shape."
+  },
+  {
+    "id": 5,
+    "name": "Mountain Graphic Tee",
+    "cat": "Graphic",
+    "price": 29,
+    "rating": 4.6,
+    "colors": [
+      "Black",
+      "Sand",
+      "Teal"
+    ],
+    "desc": "Screen-printed mountain artwork on soft-washed cotton.",
+    "graphic": "mountain",
+    "tag": "New"
+  },
+  {
+    "id": 6,
+    "name": "Sunset Stripe Tee",
+    "cat": "Graphic",
+    "price": 28,
+    "rating": 4.3,
+    "colors": [
+      "White",
+      "Navy",
+      "Red"
+    ],
+    "desc": "Retro chest stripes inspired by 70s surf culture.",
+    "graphic": "stripe"
+  },
+  {
+    "id": 7,
+    "name": "Oversized Drop Tee",
+    "cat": "Oversized",
+    "price": 36,
+    "rating": 4.5,
+    "colors": [
+      "Grey",
+      "Teal",
+      "Black"
+    ],
+    "desc": "Relaxed streetwear silhouette with extra-long body."
+  },
+  {
+    "id": 8,
+    "name": "Slub Henley Tee",
+    "cat": "Crew Neck",
+    "price": 32,
+    "rating": 4.6,
+    "colors": [
+      "Olive",
+      "Sand",
+      "Navy"
+    ],
+    "desc": "Textured slub cotton with a three-button placket.",
+    "tag": "Low stock"
+  },
+  {
+    "id": 9,
+    "name": "Sport Performance Tee",
+    "cat": "Crew Neck",
+    "price": 27,
+    "rating": 4.2,
+    "colors": [
+      "Black",
+      "Teal",
+      "Grey"
+    ],
+    "desc": "Moisture-wicking stretch fabric for the gym and beyond."
+  },
+  {
+    "id": 10,
+    "name": "Wave Graphic Tee",
+    "cat": "Graphic",
+    "price": 30,
+    "rating": 4.7,
+    "colors": [
+      "Sand",
+      "White",
+      "Teal"
+    ],
+    "desc": "Hand-drawn wave print on garment-dyed cotton.",
+    "graphic": "wave"
+  },
+  {
+    "id": 11,
+    "name": "V-Neck Pocket Tee",
+    "cat": "V-Neck",
+    "price": 26,
+    "rating": 4.4,
+    "colors": [
+      "Olive",
+      "Black",
+      "Red"
+    ],
+    "desc": "Soft V-neck with a chest pocket for a lived-in look."
+  },
+  {
+    "id": 12,
+    "name": "Tipped Collar Polo",
+    "cat": "Polo",
+    "price": 48,
+    "rating": 4.5,
+    "colors": [
+      "White",
+      "Black",
+      "Navy"
+    ],
+    "desc": "Contrast-tipped collar and cuffs for a sharper finish."
+  }
+]
