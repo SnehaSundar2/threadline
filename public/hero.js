@@ -30,7 +30,7 @@
 
   // ---- background removal -------------------------------------------------
   const CROP = 0.0065;                            // the file has thin black encoder rows at the top/bottom edge
-  const MW = 384, MH = 216;                       // working resolution for the mask
+  const MW = 512, MH = 288;                       // working resolution for the mask
   const mc = document.createElement('canvas'); mc.width = MW; mc.height = MH;
   const mctx = mc.getContext('2d', { willReadFrequently: true });
   const mask = new Uint8Array(MW * MH), tmp = new Uint8Array(MW * MH), stack = new Int32Array(MW * MH);
@@ -44,18 +44,36 @@
     for (let i = 0; i < n; i++) {
       const r = d[i * 4], g = d[i * 4 + 1], b = d[i * 4 + 2];
       const mn = Math.min(r, g, b), mx = Math.max(r, g, b);
-      if (mx - mn < 22) { if (mn > 238) strict[i] = 1; if (mn > 205) loose[i] = 1; }
+      if (mx - mn < 34) { if (mn > 232) strict[i] = 1; if (mn > 168) loose[i] = 1; }   // loose = pale anti-aliased fringe
     }
     mask.fill(255);                                // 255 = keep, 0 = background
     let sp = 0;
     const seed = i => { if (strict[i] && mask[i]) { mask[i] = 0; stack[sp++] = i; } };
+    const spread = () => {
+      while (sp) {
+        const i = stack[--sp], x = i % MW;
+        if (x > 0) seed(i - 1); if (x < MW - 1) seed(i + 1); if (i >= MW) seed(i - MW); if (i < n - MW) seed(i + MW);
+      }
+    };
     for (let x = 0; x < MW; x++) { seed(x); seed((MH - 1) * MW + x); }
     for (let y = 0; y < MH; y++) { seed(y * MW); seed(y * MW + MW - 1); }
-    while (sp) {                                    // flood-fill only from the frame edges
-      const i = stack[--sp], x = i % MW;
-      if (x > 0) seed(i - 1); if (x < MW - 1) seed(i + 1); if (i >= MW) seed(i - MW); if (i < n - MW) seed(i + MW);
+    spread();                                       // 1) white connected to the frame edge
+    // 2) white pockets enclosed by the character (e.g. between arm and body): big ones are background,
+    //    small ones (eye whites, teeth, highlights) stay.
+    const BIG = Math.round(n * 0.0009), seen = new Uint8Array(n), comp = new Int32Array(n);
+    for (let i = 0; i < n; i++) {
+      if (!strict[i] || !mask[i] || seen[i]) continue;
+      let cs = 0, sp2 = 0; stack[sp2++] = i; seen[i] = 1;
+      while (sp2) {
+        const j = stack[--sp2]; comp[cs++] = j; const x = j % MW;
+        if (x > 0 && strict[j - 1] && mask[j - 1] && !seen[j - 1]) { seen[j - 1] = 1; stack[sp2++] = j - 1; }
+        if (x < MW - 1 && strict[j + 1] && mask[j + 1] && !seen[j + 1]) { seen[j + 1] = 1; stack[sp2++] = j + 1; }
+        if (j >= MW && strict[j - MW] && mask[j - MW] && !seen[j - MW]) { seen[j - MW] = 1; stack[sp2++] = j - MW; }
+        if (j < n - MW && strict[j + MW] && mask[j + MW] && !seen[j + MW]) { seen[j + MW] = 1; stack[sp2++] = j + MW; }
+      }
+      if (cs > BIG) for (let k = 0; k < cs; k++) mask[comp[k]] = 0;
     }
-    for (let pass = 0; pass < 2; pass++) {          // eat the pale halo around the outline
+    for (let pass = 0; pass < 3; pass++) {          // 3) eat the pale halo around the outline
       tmp.set(mask);
       for (let y = 1; y < MH - 1; y++) for (let x = 1; x < MW - 1; x++) {
         const i = y * MW + x;
@@ -63,10 +81,15 @@
       }
       mask.set(tmp);
     }
-    for (let y = 1; y < MH - 1; y++) for (let x = 1; x < MW - 1; x++) { // light blur for soft edges
+    tmp.set(mask);                                  // 4) pull the edge in one more pixel so no white rim survives
+    for (let y = 1; y < MH - 1; y++) for (let x = 1; x < MW - 1; x++) {
       const i = y * MW + x;
-      tmp[i] = (mask[i] * 4 + mask[i - 1] + mask[i + 1] + mask[i - MW] + mask[i + MW]) >> 3 === 0 ? 0 :
-        (mask[i] * 4 + mask[i - 1] + mask[i + 1] + mask[i - MW] + mask[i + MW]) / 8;
+      if (mask[i] && (!mask[i - 1] || !mask[i + 1] || !mask[i - MW] || !mask[i + MW])) tmp[i] = 0;
+    }
+    mask.set(tmp);
+    for (let y = 1; y < MH - 1; y++) for (let x = 1; x < MW - 1; x++) {   // light blur = soft edge
+      const i = y * MW + x;
+      tmp[i] = (mask[i] * 4 + mask[i - 1] + mask[i + 1] + mask[i - MW] + mask[i + MW]) / 8;
     }
     for (let x = 0; x < MW; x++) { tmp[x] = mask[x]; tmp[(MH - 1) * MW + x] = mask[(MH - 1) * MW + x]; }
     for (let y = 0; y < MH; y++) { tmp[y * MW] = mask[y * MW]; tmp[y * MW + MW - 1] = mask[y * MW + MW - 1]; }
@@ -82,7 +105,7 @@
       void main(){
         vec2 c = (uv - .5) * fit + .5; c.y = 1. - c.y;
         vec3 col = texture2D(tex, vec2(c.x, ${CROP} + c.y * (1. - 2. * ${CROP}))).rgb;
-        float a = smoothstep(.3, .7, texture2D(mask, c).r);
+        float a = smoothstep(.42, .8, texture2D(mask, c).r);
         gl_FragColor = vec4(col * a, a);
       }`;
     const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return gl.getShaderParameter(o, gl.COMPILE_STATUS) ? o : null; };
