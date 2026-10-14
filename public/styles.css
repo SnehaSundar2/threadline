@@ -127,3 +127,22 @@ footer{padding:36px 5vw;text-align:center;color:var(--muted);font-size:14px}
 .hero-video .bubble.show{transform:translate(0,0) scale(1)}
 .hero-video .bubble::after{left:22px;transform:rotate(45deg)}
 .hero-video{background:radial-gradient(circle at 50% 30%,#fffaf0 0%,#fbe6a8 58%,#efc45f 100%)}
+
+/* cut-out hero: background removed, character stands directly on the page */
+.hero-video.keyed{background:radial-gradient(ellipse at 50% 62%,rgba(212,160,23,.2),transparent 62%);border:0;overflow:visible}
+.hero-video.keyed video{opacity:0;mix-blend-mode:normal}
+.hero-video.keyed #heroToon{display:block}
+.hero-video.keyed:hover{box-shadow:none}
+.hero-video.keyed .sheen{display:none}
+.hero-video #heroToon{filter:drop-shadow(0 14px 24px rgba(0,0,0,.45))}
+
+/* touch the anime: greeting pops */
+.hero-video{cursor:default}
+.hero-video.keyed .bubble{top:6%;left:6%}
+.bubble.pop{animation:bubblePop .55s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes bubblePop{0%{opacity:0;transform:translate(0,14px) scale(.2) rotate(-8deg)}60%{opacity:1;transform:translate(0,-4px) scale(1.18) rotate(2deg)}100%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}}
+.touch-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font:600 12px/1 inherit;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(14,14,15,.7);padding:8px 14px;border-radius:99px;border:1px solid var(--accent);pointer-events:none;z-index:2;animation:nudge 1.6s ease-in-out infinite;transition:opacity .4s}
+.touch-hint.gone{opacity:0;animation:none}
+@keyframes nudge{50%{transform:translateX(-50%) translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.bubble.pop,.touch-hint{animation:none}}
+.hero-video.keyed .bubble{max-width:none;white-space:nowrap}
