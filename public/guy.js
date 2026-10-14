@@ -205,7 +205,7 @@
   addEventListener('pointermove', e => { mouse.x = (e.clientX / innerWidth) * 2 - 1; mouse.y = (e.clientY / innerHeight) * 2 - 1; });
   function replay() { t0 = performance.now(); bubble.classList.remove('show'); bubbled = false; speak(); }
   canvas.addEventListener('click', replay);
-  document.getElementById('hear').addEventListener('click', e => { e.stopPropagation(); speak(); });
+  const hear = document.getElementById('hear'); if (hear) hear.addEventListener('click', e => { e.stopPropagation(); speak(); });
   // Browsers block speech until the visitor interacts, so greet on the first tap/key.
   const first = () => { if (!spokeOnce) speak(); removeEventListener('pointerdown', first); removeEventListener('keydown', first); };
   addEventListener('pointerdown', first); addEventListener('keydown', first);

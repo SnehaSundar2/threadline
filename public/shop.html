@@ -28,7 +28,11 @@
     <p>Heavyweight fabrics, perfect fits, and colours that last wash after wash.</p>
     <a class="btn" href="#shop">Shop T-Shirts</a>
   </div>
-  <div class="hero-art" id="heroArt"><img src="logo.png" alt="Falcon Fashion logo"></div>
+  <div class="hero-art" id="heroArt">
+    <canvas id="scene" aria-label="3D character waving hello"></canvas>
+    <div class="bubble" id="bubble">Hello! Welcome to Falcon Fashion 👋</div>
+    <button class="hear" id="hear" type="button">🔊 Hear greeting</button>
+  </div>
 </section>
 
 <section id="shop" class="shop">
@@ -106,6 +110,9 @@
 </div>
 
 <div id="toast" class="toast" hidden></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="guy.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
