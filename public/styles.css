@@ -92,3 +92,19 @@ footer{padding:36px 5vw;text-align:center;color:var(--muted);font-size:14px}
 .hear{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);font:600 12px/1 inherit;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);background:rgba(14,14,15,.7);border:1px solid var(--accent);padding:10px 18px;border-radius:99px;cursor:pointer;transition:.25s}
 .hear:hover{background:var(--accent);color:#111}
 @media(max-width:760px){.hero-art{min-height:400px}}
+
+/* ---- interactive hero (Google Flow video) ---- */
+.hero-video{aspect-ratio:9/10;min-height:0;max-height:78vh;justify-self:center;width:100%;max-width:520px;transition:transform .2s ease-out,box-shadow .3s;will-change:transform;cursor:pointer;background:#111}
+.hero-video:hover{box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px var(--accent)}
+.hero-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hero-video .sheen{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,30%),rgba(255,255,255,.16),transparent 45%);mix-blend-mode:soft-light}
+.hero-video .bubble{top:16px;z-index:2}
+.hero-ctrl{position:absolute;left:0;right:0;bottom:14px;display:flex;gap:10px;justify-content:center;z-index:2}
+.hero-ctrl button{font:600 12px/1 inherit;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);background:rgba(14,14,15,.75);border:1px solid var(--accent);padding:10px 16px;border-radius:99px;cursor:pointer;backdrop-filter:blur(6px);transition:.25s}
+.hero-ctrl button:hover{background:var(--accent);color:#111}
+.hero-video.no-video #sound{display:none}
+.hero-video.no-video video{pointer-events:none}
+.hero-video.no-video.wave video{animation:wiggle 1.6s ease-in-out}
+@keyframes wiggle{0%,100%{transform:scale(1) rotate(0)}20%{transform:scale(1.04) rotate(-1.2deg)}40%{transform:scale(1.04) rotate(1.2deg)}60%{transform:scale(1.04) rotate(-.8deg)}80%{transform:scale(1.02) rotate(.6deg)}}
+@media (prefers-reduced-motion:reduce){.hero-video{transition:none}.hero-video.no-video.wave video{animation:none}}
+@media(max-width:760px){.hero-video{max-width:none;aspect-ratio:4/5}}
