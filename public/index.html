@@ -3,108 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THREADLINE – Men's T-Shirts</title>
-<link rel="stylesheet" href="styles.css">
+<title>Falcon Fashion</title>
+<meta name="description" content="Falcon Fashion – premium men's t-shirts.">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+  html,body{height:100%;margin:0}
+  body{background:radial-gradient(ellipse at center,#2a2a2c 0%,#0c0c0d 75%);display:grid;place-items:center;overflow:hidden}
+  a.splash{display:flex;flex-direction:column;align-items:center;gap:28px;padding:24px;text-decoration:none;animation:rise 1.2s ease both}
+  a.splash img{width:min(760px,88vw);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));transition:transform .5s,filter .5s}
+  a.splash:hover img{transform:scale(1.03);filter:drop-shadow(0 20px 50px rgba(212,160,23,.35))}
+  .enter{font:600 13px/1 system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#d4a017;border:1px solid #d4a017;padding:14px 30px;border-radius:99px;transition:.25s}
+  a.splash:hover .enter{background:#d4a017;color:#0c0c0d}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}}
+  @media (prefers-reduced-motion:reduce){a.splash{animation:none}}
+</style>
 </head>
 <body>
-<header class="nav">
-  <a class="logo" href="#">THREAD<span>LINE</span></a>
-  <nav>
-    <a href="#shop">Shop</a>
-    <a href="#features">Why us</a>
-    <a href="#footer">Contact</a>
-  </nav>
-  <button class="cart-btn" id="openCart" aria-label="Open cart">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
-    <span id="cartCount" class="badge">0</span>
-  </button>
-</header>
-
-<section class="hero">
-  <div class="hero-text">
-    <p class="eyebrow">New season · 100% organic cotton</p>
-    <h1>The tee you'll<br>wear every day.</h1>
-    <p>Heavyweight fabrics, perfect fits, and colours that last wash after wash.</p>
-    <a class="btn" href="#shop">Shop T-Shirts</a>
-  </div>
-  <div class="hero-art" id="heroArt"></div>
-</section>
-
-<section id="shop" class="shop">
-  <div class="toolbar">
-    <input id="search" type="search" placeholder="Search t-shirts…">
-    <select id="category">
-      <option value="all">All styles</option>
-      <option>Crew Neck</option>
-      <option>V-Neck</option>
-      <option>Polo</option>
-      <option>Graphic</option>
-      <option>Oversized</option>
-    </select>
-    <select id="sort">
-      <option value="featured">Featured</option>
-      <option value="low">Price: low to high</option>
-      <option value="high">Price: high to low</option>
-      <option value="rating">Top rated</option>
-    </select>
-  </div>
-  <div class="swatches" id="colorFilter"></div>
-  <div class="grid" id="grid"></div>
-  <p id="empty" class="empty" hidden>No t-shirts match your filters.</p>
-</section>
-
-<section id="features" class="features">
-  <div><h3>Free shipping</h3><p>On orders over $50.</p></div>
-  <div><h3>30-day returns</h3><p>Not the right fit? Send it back.</p></div>
-  <div><h3>Organic cotton</h3><p>Soft, durable, planet-friendly.</p></div>
-  <div><h3>Secure checkout</h3><p>Your details stay private.</p></div>
-</section>
-
-<footer id="footer">
-  <div class="logo">THREAD<span>LINE</span></div>
-  <p>support@threadline.example · © 2026 Threadline. Demo store.</p>
-</footer>
-
-<!-- Product modal -->
-<div class="overlay" id="modalOverlay" hidden>
-  <div class="modal" role="dialog" aria-modal="true">
-    <button class="close" data-close>&times;</button>
-    <div class="modal-art" id="modalArt"></div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
-</div>
-
-<!-- Cart drawer -->
-<div class="overlay" id="cartOverlay" hidden>
-  <aside class="drawer">
-    <div class="drawer-head"><h2>Your cart</h2><button class="close" data-close>&times;</button></div>
-    <div id="cartItems" class="cart-items"></div>
-    <div class="drawer-foot">
-      <div class="row"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
-      <div class="row small"><span>Shipping</span><span id="shipping">—</span></div>
-      <button class="btn full" id="checkout">Checkout</button>
-    </div>
-  </aside>
-</div>
-
-<!-- Checkout -->
-<div class="overlay" id="checkoutOverlay" hidden>
-  <form class="modal checkout" id="checkoutForm">
-    <button type="button" class="close" data-close>&times;</button>
-    <div class="modal-body" style="grid-column:1/-1">
-      <h2>Checkout</h2>
-      <p id="checkoutSummary"></p>
-      <label class="label">Full name</label><input name="name" required maxlength="100" autocomplete="name">
-      <label class="label">Email</label><input name="email" type="email" required maxlength="150" autocomplete="email">
-      <label class="label">Shipping address</label><textarea name="address" required maxlength="300" rows="3" autocomplete="street-address"></textarea>
-      <p id="checkoutError" class="err" hidden></p>
-      <button class="btn full" id="placeOrder" style="margin-top:20px">Place order</button>
-      <p style="font-size:12px">Demo store: no payment is taken.</p>
-    </div>
-  </form>
-</div>
-
-<div id="toast" class="toast" hidden></div>
-<script src="app.js"></script>
+  <a class="splash" href="shop.html" aria-label="Enter Falcon Fashion">
+    <img src="logo.png" alt="Falcon Fashion">
+    <span class="enter">Enter</span>
+  </a>
 </body>
 </html>

@@ -68,5 +68,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((err, _req, res, _next) => { console.error(err); res.status(err.status || 500).json({ error: 'Server error' }); });
 
 const PORT = process.env.PORT || 3000;
-if (require.main === module) app.listen(PORT, () => console.log(`Threadline running on http://localhost:${PORT}`));
+if (require.main === module) app.listen(PORT, () => console.log(`Falcon Fashion running on http://localhost:${PORT}`));
 module.exports = app;

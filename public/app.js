@@ -11,7 +11,7 @@ const $ = s => document.querySelector(s);
 const money = n => '$' + n.toFixed(2);
 const state = { search: '', cat: 'all', sort: 'featured', color: 'all', cart: load() };
 
-function load() { try { return JSON.parse(localStorage.getItem('tl-cart')) || []; } catch { return []; } }
+function load() { try { return JSON.parse(localStorage.getItem('ff-cart')) || []; } catch { return []; } }
 function save() { try { localStorage.setItem('tl-cart', JSON.stringify(state.cart)); } catch {} }
 function shade(hex, amt) {
   const n = parseInt(hex.slice(1), 16);
@@ -180,6 +180,5 @@ renderSwatches(); renderCart();
 fetch('/api/products').then(r => r.json()).then(list => {
   PRODUCTS = list;
   state.cart = state.cart.filter(i => PRODUCTS.some(p => p.id === i.id));
-  $('#heroArt').innerHTML = teeSVG(PRODUCTS[0], 'Olive');
   renderGrid(); renderCart();
 }).catch(() => { $('#empty').textContent = 'Could not load products.'; $('#empty').hidden = false; });
