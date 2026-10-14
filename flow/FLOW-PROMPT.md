@@ -18,3 +18,14 @@ Tips
 - Keep the clip short (6-8 s): it plays once each time the hero scrolls into view.
 - If he waves more than once, add "waves exactly once" to the prompt and regenerate.
 - Only use photos of people who have agreed to appear in your marketing.
+
+---
+## Want an exact Pixar-style likeness? (do this first)
+The 3D character on the site is built in code and only resembles the photo. For an exact likeness, generate a
+Pixar-style still first, in Gemini or Flow's image tool, using `start-frame.jpg` as the reference:
+
+> Turn this photo into a Pixar-style 3D animated character: the same young man with short black swept-up hair, light
+> stubble, warm brown skin, big friendly smile, black t-shirt with grey striped graphic, black watch, thin chain.
+> Smooth stylised skin, large expressive eyes, soft studio lighting, clean plain background. Waist-up, facing camera.
+
+Then use that image as the start frame in Flow to animate the wave.

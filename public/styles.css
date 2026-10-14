@@ -108,3 +108,22 @@ footer{padding:36px 5vw;text-align:center;color:var(--muted);font-size:14px}
 @keyframes wiggle{0%,100%{transform:scale(1) rotate(0)}20%{transform:scale(1.04) rotate(-1.2deg)}40%{transform:scale(1.04) rotate(1.2deg)}60%{transform:scale(1.04) rotate(-.8deg)}80%{transform:scale(1.02) rotate(.6deg)}}
 @media (prefers-reduced-motion:reduce){.hero-video{transition:none}.hero-video.no-video.wave video{animation:none}}
 @media(max-width:760px){.hero-video{max-width:none;aspect-ratio:4/5}}
+/* hero video is landscape (16:9) - show most of the frame */
+.hero-video{aspect-ratio:16/11;max-width:640px;max-height:none}
+@media(max-width:760px){.hero-video{aspect-ratio:16/11}}
+
+/* anime (cel-shaded) canvas over the video */
+#heroToon{position:absolute;inset:0;width:100%;height:100%;display:none;pointer-events:none}
+.hero-video.toon #heroToon{display:block}
+.hero-video.toon video{opacity:0}
+.hero-ctrl{flex-wrap:wrap;padding:0 10px}
+.hero-ctrl button{padding:9px 13px;font-size:11px}
+@media(max-width:560px){.hero-ctrl{flex-wrap:nowrap;gap:6px;bottom:8px}.hero-ctrl button{padding:7px 9px;font-size:10px;letter-spacing:.04em;white-space:nowrap}}
+/* anime hero: white video background blends into a warm gold backdrop */
+.hero-video{background:radial-gradient(circle at 50% 30%,#fff1c9 0%,#f0c24d 62%,#c8961a 100%)}
+.hero-video video{mix-blend-mode:multiply}
+.hero-video .sheen{mix-blend-mode:soft-light}
+.hero-video .bubble{left:12px;top:12px;max-width:58%;white-space:normal;font-size:13px;padding:8px 14px;border-radius:14px;transform:translate(0,8px) scale(.9);transform-origin:left top;background:#141414;color:#f3efe6}
+.hero-video .bubble.show{transform:translate(0,0) scale(1)}
+.hero-video .bubble::after{left:22px;transform:rotate(45deg)}
+.hero-video{background:radial-gradient(circle at 50% 30%,#fffaf0 0%,#fbe6a8 58%,#efc45f 100%)}
